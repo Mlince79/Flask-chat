@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome, {{ username }}</h1> 
+
+    <form method="POST">
+        <textarea cols ="50" rows="4" name="message" id="message"></textarea>
+        <br>
+        <button>Send message</button>
+    </form>
+
+    {% for message in chat_messages %}
+        <p>({{ message.timestamp }}) {{ message.from }}: {{message.message }}</p>
+    {% endfor %}
+
+    <script>
+//The first thing we'll do is run the clearTimeout() function with our timer variable.
+//And the second thing that we're going to do is start the timer again, using the setTimeout() function.
+        let textbox = document.getElementById("message")
+
+        let timer = setTimeout(function() {
+            location.reload();
+        }, 5000)
+
+//Well, the onkeydown() function runs whenever there's a key press.
+        textbox.onkeydown = function(e) {
+            
+//The clearTimeout() function stops the timer, and the code afterwards starts it again.
+            clearTimeout(timer)
+
+            timer = setTimeout(function() {
+                location.reload();
+            }, 5000)
+        }
+    </script>
+</body>
+</html>
